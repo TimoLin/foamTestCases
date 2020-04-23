@@ -1,0 +1,94 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.6                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      LESProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+//LESModel        $LESMODEL$;
+LESModel        Smagorinsky;
+
+printCoeffs     on;
+
+transportVarZ   on;
+
+//delta        $DELTA$;
+delta        cubeRootVol;
+
+SmagorinskyCoeffs
+{
+    Sct       0.7;
+
+    Sc        1;
+
+    Cchi      2;
+
+    CvarZ     1;
+}
+
+
+dynLocalSGSCoeffs
+{
+    filter simple;
+}
+
+dynLagrangianCoeffs
+{
+    filter simple;
+    theta 1.5;
+}
+
+WALECoeffs
+{
+    Sct       0.7;
+
+    Sc        1;
+
+    Cchi      2;
+
+    CvarZ     1;
+    
+    Ck       0.02;
+
+    Cw       0.325;
+}
+
+cubeRootVolCoeffs
+{
+    deltaCoeff      1;
+}
+
+vanDriestCoeffs
+{
+    delta           cubeRootVol;
+    cubeRootVolCoeffs
+    {
+        deltaCoeff      1;
+    }
+
+    smoothCoeffs
+    {
+        delta           cubeRootVol;
+        cubeRootVolCoeffs
+        {
+            deltaCoeff      1;
+        }
+
+        maxDeltaRatio   1.1;
+    }
+
+    Aplus           26;
+    Cdelta          0.158;
+}
+
+// ************************************************************************* //

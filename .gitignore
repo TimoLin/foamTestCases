@@ -1,0 +1,6 @@
+# backup files
+*.swp
+
+*/constant/Tables
+*/constant/polyMesh/*
+!*/constant/polyMesh/blockMeshDict
