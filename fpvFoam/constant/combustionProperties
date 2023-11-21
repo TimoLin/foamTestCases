@@ -15,16 +15,14 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-combustionModel  FPVModel<rhoThermoCombustion>;
+combustionModel  ChemTable3D<rhoThermoCombustion>;
 
 active  true;
 
 pollutant true;
 
-FPVModelCoeffs
+ChemTable3DCoeffs
 {
-        //useScalarDissipation true;
-        useMixtureFractionVariance true;
         pollutantModel Ihme;
         
 }
